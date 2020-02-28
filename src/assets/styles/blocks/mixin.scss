@@ -1,0 +1,292 @@
+$tablets:768px;
+$desktops:1200px;
+
+$black:#000000;
+$white:#ffffff;
+$gray:#7c907c;
+$green:#60af00;
+
+
+
+
+
+//@mixin block{
+//    position: absolute;
+//    display: flex;
+//    align-items: center;
+//    justify-content: center;
+//    top: 0;
+//    left: -10000px;
+//    width: 100vw;
+//    height: 100%;
+//    background-color: rgba(100, 86, 90, 0.5)
+//}
+//
+//@mixin container{
+//    display: flex;
+//    flex-flow: column;
+//    top: 0;
+//    left: 0;
+//    background-color: $white;
+//    opacity: 1;
+//    width: 95%;
+//    max-width: 1200px;
+//
+//    padding: 28px 50px;
+//
+//    @include interval($interval){
+//
+//    }
+//
+//    @include tablets($tablets){
+//        width: 100%;
+//        height: 100%;
+//
+//
+//    }
+//
+//    @include phones($phones){
+//        height: 100%;
+//    }
+//}
+//
+//@mixin header{
+//    position: relative;
+//    display: flex;
+//    width: 100%;
+//    max-width: 1400px;
+//    height: 40px;
+//
+//
+//    @include tablets($tablets){
+//        height: 90px;
+//
+//    }
+//
+//}
+//
+//@mixin logo{
+//    display: none;
+//
+//    @include tablets($tablets){
+//        display: block;
+//        background:url(./assets/images/img/logo.png) center center no-repeat;
+//        background-size: cover;
+//        height: 100%;
+//        width: 85px;
+//
+//    }
+//
+//}
+//
+//@mixin content{
+//    display: flex;
+//  flex-flow: column;
+//
+//    height: 64%;
+//
+//    @include tablets($tablets){
+//        padding-top: 20px;
+//    }
+//}
+//@mixin title{
+//    display: flex;
+//    align-items: flex-end;
+//    justify-content: center;
+//    color: $darkgray;
+//    font-size: 46px;
+//    width: 90%;
+//    margin-bottom: 50px;
+//    line-height: 44px;
+//
+//    &::after{
+//        content: "";
+//        display: block;
+//        margin-top: 20px;
+//        margin-left: 0;
+//        width: 285px;
+//        height: 2px;
+//        background-color: $yellow;
+//
+//
+//
+//    }
+//    @include interval($interval){
+//        font-size: 30px;
+//        flex-flow: column;
+//        align-items: flex-start;
+//        margin-bottom: 30px;
+//
+//        &::after{
+//            width: 140px;
+//        }
+//    }
+//
+//    @include tablets($tablets){
+//        width: 100%;
+//        font-size: 25px;
+//    }
+//}
+//
+//@mixin close{
+//    background: none;
+//    outline: none;
+//    position: absolute;
+//    right: 20px;
+//    top: 15px;
+//    width: 30px;
+//    height: 30px;
+//    display: flex;
+//    justify-content: center;
+//    align-items: center;
+//    padding: 0;
+//
+//    &:hover::before{
+//         background-color: $yellow;
+//    }
+//
+//    &:hover::after{
+//        background-color: $yellow;
+//   }
+//
+//    &::before{
+//        content: ' ';
+//        height: 30px;
+//        width: 1px;
+//        background-color: $darkgray;
+//        transform: rotate(45deg);
+//        transition:  0.3s ease-in-out;
+//
+//    }
+//
+//    &::after{
+//        content: ' ';
+//        height: 30px;
+//        width: 1px;
+//        background-color: $darkgray;
+//        transform: rotate(-45deg);
+//        transition:  0.3s ease-in-out;
+//    }
+//}
+//
+//@mixin list{
+//    display: flex;
+//    flex-flow: column;
+//    flex-flow: row wrap;
+//    align-content: space-between;
+//
+//    &::after{
+//        content: "";
+//        display: block;
+//        margin-bottom: 20px;
+//        margin-left: 0;
+//        width: 100%;
+//        height: 2px;
+//        background-color: $gray;
+//        opacity:0.2;
+//    }
+//}
+//
+//@mixin item{
+//    margin-bottom: 30px;
+//    display: flex;
+//    width: 33%;
+//
+//
+//    @include tablets($tablets){
+//        width: 48%;
+//        margin-bottom: 20px;
+//
+//
+//    }
+//    @include phones($phones){
+//        width: 100%;
+//    }
+//}
+//
+//@mixin icons{
+//    display: flex;
+//    align-items: center;
+//    justify-content: center;
+//    width: 46px;
+//    height: 46px;
+//    border: 2px solid $yellow;
+//    border-radius: 50%;
+//    margin-right: 5%;
+//
+//    @include tablets($tablets){
+//        width: 40px;
+//        height: 40px;
+//
+//    }
+//
+//}
+//
+//@mixin feature{
+//    display: flex;
+//    align-items: center;
+//    width: 80%;
+//    @include  PlayfairDisplay;
+//    font-weight: normal;
+//   font-size: 16px;
+//    color: $darkgray;
+//}
+//
+//
+//@mixin footer-list{
+//    display: flex;
+//    flex-flow: row wrap;
+//    align-content: space-between;
+//
+//
+//}
+//
+//@mixin footer-item{
+//    display: flex;
+//    flex-flow: column;
+//    width: 32%;
+//    padding: 0 20px 20px;
+//
+//    @include interval($interval){
+//        padding: 0 10px 10px;
+//    }
+//
+//    @include tablets($tablets){
+//        width: 48%;
+//        padding: 10px;
+//
+//
+//
+//    }
+//    @include phones($phones){
+//        width: 100%;
+//        margin-bottom:12px;
+//
+//    }
+//
+//}
+//
+//@mixin footer-feature{
+//    display: flex;
+//    @include roboto-regular;
+//    color: $darkgray;
+//    font-size: 14px;
+//    line-height: 22px;
+//    text-decoration: underline #cccccc;
+//
+//    &::before{
+//        content: "";
+//        display: block;
+//        width: 5px;
+//        height: 5px;
+//        min-width: 5px;
+//        min-height: 5px;
+//        background-color:$yellow;
+//        border-radius: 50%;
+//        margin-right: 15px;
+//        margin-top: 8px;
+//    }
+//}
+
+
+

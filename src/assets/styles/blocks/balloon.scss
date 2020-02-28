@@ -1,0 +1,148 @@
+.balloon{
+  position: absolute;
+  display: none;
+  left: 50%;
+  top: 30px;
+  flex-flow: column;
+  overflow: hidden;
+  width: 380px;
+  height: 525px;
+  border-radius: 10px;
+  background: white;
+}
+
+.balloon--active{
+  display: flex;
+}
+
+.balloon__header{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  padding: 15px;
+  background: #ff8663;
+}
+
+.balloon__point{
+  display: flex;
+  width: 10px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.balloon__address{
+  display: flex;
+  width: 90%;
+  font-weight: lighter;
+  color: white;
+  font-size: 12px;
+  overflow: hidden;
+  margin-right: 5px;
+}
+
+.balloon__close{
+  display: flex;
+  width: 15px;
+  height: 13px;
+  cursor: pointer;
+}
+
+.balloon__feedback{
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  height: 155px;
+  width: 100%;
+  padding: 15px;
+  overflow: auto;
+  color: #4f4f4f;
+  font-size: 16px;
+
+  &:after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    right: 15px;
+    width: 92%;
+    height: 1px;
+    background: #e5e5e5;
+  }
+}
+
+.balloon__form{
+  display: flex;
+  flex-flow: column;
+  padding: 15px;
+}
+
+.balloon__title{
+  display: flex;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ff8663;
+  margin-bottom: 15px;
+}
+
+.balloon-form{
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
+
+.balloon-form__list{
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.balloon-form__item{
+  display: flex;
+  width: 100%;
+  height: 35px;
+  font-size: 16px;
+  color: #7c907c;
+  outline: none;
+  margin-bottom: 10px;
+
+  &:last-child{
+    height: 130px;
+    .balloon-form__elem{
+      border-radius: 20px;
+      resize: none;
+    }
+  }
+}
+
+.balloon-form__name,
+.balloon-form__place,
+.balloon-form__textarea{
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.balloon-form__elem{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  border: 1px solid #e5e5e5;
+  outline: none;
+  padding: 10px;
+}
+
+.balloon-form__btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85px;
+  height: 30px;
+  border-radius: 10px;
+  background: #ff8663;
+  font-weight: lighter;
+  color: white;
+  font-size: 12px;
+  margin-left: 75%;
+}
