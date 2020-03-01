@@ -14,20 +14,20 @@ block content
         .balloon__feedback
             span.balloon__text(id='text') Отзывов пока нет
             ul.balloon__list(id='balloon-list')
-        .balloon__form
+        .balloon__form(id= 'my-form')
             h1.balloon__title ВАШ ОТЗЫВ
             form.balloon-form
                 ul.balloon-form__list
                     li.balloon-form__item
                         label.balloon-form__name(for='')
-                            input.balloon-form__elem(type="text" placeholder="Ваше имя" name="name" required)
+                            input.balloon-form__elem( id='name' type="text" placeholder="Ваше имя" name="name" required)
                     li.balloon-form__item
                         label.balloon-form__place(for='')
-                            input.balloon-form__elem(type="text" placeholder="Укажите место" name="place" required)
+                            input.balloon-form__elem(id='place' type="text" placeholder="Укажите место" name="place" required)
                     li.balloon-form__item
                         label.balloon-form__textarea(for='')
-                            textarea.balloon-form__elem(type="text" name="comment" required="" placeholder="Поделитесь впечатдениями")
-                button.balloon-form__btn(id='btn') Добавить
+                            textarea.balloon-form__elem(id='textarea' type="text" name="comment" required="" placeholder="Поделитесь впечатдениями")
+                button.balloon-form__btn(id='btn' onclick="") Добавить
 
 
 
