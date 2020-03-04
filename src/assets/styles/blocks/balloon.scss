@@ -90,7 +90,13 @@
   flex-flow: column;
   width: 100%;
 }
+.balloon__text{
+  display: flex;
+}
 
+.balloon__text--delete{
+  display: none;
+}
 .balloon-form__list{
   display: flex;
   flex-flow: column;

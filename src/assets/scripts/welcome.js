@@ -2,14 +2,10 @@
 ymaps.ready(init);
 var modal = document.getElementById('balloon');
 let closeModal = document.getElementById('close');
-var feedbacksArray = [];
-var inputName = document.getElementsByTagName('name');
-var inputPlace = document.getElementsByTagName('place');
-var inputText = document.getElementsByTagName('comment');
-var addButton = document.getElementById('btn')[document.getElementById('btn').length - 1];
 var myInput = document.getElementById('address');
-// let comments = localStorage.getItem('comments') ? JSON.parse(localStorage.getItem('comments') ) : [];
-function init() {
+let text = document.getElementById('text');
+
+    function init() {
     // eslint-disable-next-line no-undef
     var myMap = new ymaps.Map('map', {
         center: [55.76, 37.64], // Москва
@@ -27,18 +23,19 @@ function init() {
         openBalloonOnClick: true,
         groupByCoordinates: false,
         clusterBalloonContentLayout: 'cluster#balloonCarousel'
+
     });
     myMap.geoObjects.add(clusterer);
     myMap.events.add('click', function(e) {
         var coords = e.get('coords');
-
         // eslint-disable-next-line no-undef
+
         addFeedback(coords);
     });
+
     function addFeedback(coords){
         // eslint-disable-next-line no-undef
         var geoCoords = ymaps.geocode(coords);
-        // var position = e.get('position');
         modal.classList.add('balloon--active');
 
         geoCoords.then(res => {
@@ -46,91 +43,70 @@ function init() {
             obj.coords = coords;
             obj.address = res.geoObjects.get(0).properties.get('text');
             obj.comments = [];
-
             myInput.innerHTML = obj.address;
             var feedbacks = document.getElementById('balloon-list');
-            var feedback = document.createElement('li');
-            feedback.classList.add('feedback');
-            // eslint-disable-next-line no-undef
-            feedback.innerHTML = hintContent;
-            feedbacks.appendChild(feedback);
-
+            var addButton = document.getElementById('btn');
 
             addButton.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (inputName.value && inputPlace.value && inputText.value) {
-                    // var form = document.getElementById('my-form');
-                    var feedback = document.createElement('li');
-                    var name = document.createElement('div');
-                    var place = document.createElement('div');
-                    var text = document.createElement('div');
-                    var day = document.createElement('div');
-                    var firstLine = document.createElement('div');
-                    name.innerHTML = JSON.parse(localStorage.getItem('name') );
-                    place.innerHTML = JSON.parse(localStorage.getItem('place') );
-                    text.innerHTML = JSON.parse(localStorage.getItem('textarea') );
-                    var date = new Date();
-                    day.innerHTML = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear();
-                    feedback.classList.add('feedback');
-                    name.classList.add('feedback__name');
-                    place.classList.add('feedback__place');
-                    text.classList.add('feedback__text');
-                    firstLine.classList.add('feedback__firstLine');
-                    firstLine.appendChild(name);
-                    firstLine.appendChild(place);
-                    firstLine.appendChild(day);
-                    feedback.appendChild(firstLine);
-                    feedback.appendChild(text);
-                    feedbacks.appendChild(feedback);
-                    // inputName.value = JSON.parse(localStorage.getItem('name') );
-                    // inputPlace.value = JSON.parse(localStorage.getItem('place') );
-                    // inputText.value = JSON.parse(localStorage.getItem('textarea') );
+                let formContext = document.querySelector('.balloon-form');
 
-                        localStorage.setItem("name", JSON.stringify(document.getElementById("name")) .value);
-                        localStorage.setItem("place", JSON.stringify(document.getElementById("place")) .value);
-                        localStorage.setItem("textarea", JSON.stringify(document.getElementById("textarea")) .value);
-                    // comments = form.elements.value;
+                var feedback = document.createElement('li');
+                feedbacks.appendChild(feedback);
+                var header = document.createElement('div');
+                header.innerHTML = `${formContext.name.value} ${formContext.place.value}`;
+                feedback.appendChild(header);
+
+                var day = document.createElement('div');
+                var date = new Date();
+                day.innerHTML = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear();
+                feedback.appendChild(day);
+
+                var footer = document.createElement('div');
+                footer.innerHTML = `${formContext.comment.value}`;
+                feedback.appendChild(footer);
+
+                var place = `${formContext.place.value}`;
+                var comment= `${formContext.comment.value}`;
 
 
 
-                    feedbacksArray.push(feedback);
-                } else {
-                    alert('Заполните все поля!')
-                }
+                // eslint-disable-next-line no-undef
+                let objectMarker = new ymaps.GeoObject({
+                    geometry: { type: "Point", coordinates: coords },
+                    preset: 'islands#darkOrangeDotIcon',
+                    draggable: true,
+                    properties: {
+                        balloonContentHeader: '<span> '+ place + ' </span>',
+                        balloonContentBody: '<a href=""  class="myLink">' + obj.address + '</a>',
 
-                var myPlacemark = placemarks(coords);
-                myMap.geoObjects.add(myPlacemark);
+                        balloonContentFooter: '<span>' + comment + '</span>'
+                    },
+                });
 
-            })
+
+                clusterer.add(objectMarker);
+                formContext.reset();
+               text.classList.add('balloon__text--delete');
+
+                objectMarker.events.add(['click'],  function () {
+                    modal.classList.add('balloon--active');
+                    // Ваш код
+                })
+            });
+
+
         });
+
     }
 
-    function placemarks(coords) {
-        // eslint-disable-next-line no-undef
-        return new ymaps.Placemark(coords, {
-            preset: 'islands#darkOrangeDotIcon',
-            draggable: true
-        });
-    }
 
-    // function placemarks(obj, myMap, position, clusterer, modal) {
-    //     // eslint-disable-next-line no-undef
-    //     var placemark = new ymaps.Placemark(obj.coords, {
-    //         hintContent: modal.children[1].lastChild.innerHTML,
-    //         modalContent: obj.address + modal.children[1].lastChild.innerHTML
-    //     }, {
-    //         preset: 'islands#darkOrangeDotIcon',
-    //         openHintOnHover: false
-    //     });
-    //     myMap.geoObjects.add(placemark);
-    //     clusterer.add(placemark);
-    //     placemark.events.add('click', () => {
-    //         // eslint-disable-next-line no-undef
-    //         openModal(obj, myMap, position, clusterer, placemark.properties._data.hintContent);
-    //     })
-    // }
+
+
+
+
     closeModal.addEventListener('click', function(){
         modal.classList.remove('balloon--active');
-        modal.innerHTML = '';
+
     });
 }

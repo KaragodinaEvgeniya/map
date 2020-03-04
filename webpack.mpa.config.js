@@ -3,7 +3,7 @@ const env = process.env.NODE_ENV;
 
 module.exports = {
   entry: {
-    welcome: "./src/assets/scripts/welcome.js"
+    welcome: "./src/assets/scripts/we.js"
 
   },
   output: {
