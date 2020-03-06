@@ -4,7 +4,9 @@ var modal = document.getElementById('balloon');
 let closeModal = document.getElementById('close');
 var myInput = document.getElementById('address');
 let text = document.getElementById('text');
-
+var feedbacks;
+var objMap = {};
+var count = 0;
     function init() {
     // eslint-disable-next-line no-undef
     var myMap = new ymaps.Map('map', {
@@ -44,7 +46,7 @@ let text = document.getElementById('text');
             obj.address = res.geoObjects.get(0).properties.get('text');
             obj.comments = [];
             myInput.innerHTML = obj.address;
-            var feedbacks = document.getElementById('balloon-list');
+            feedbacks = document.getElementById('balloon-list');
             var addButton = document.getElementById('btn');
 
             addButton.addEventListener('click', (e) => {
@@ -63,13 +65,19 @@ let text = document.getElementById('text');
                 feedback.appendChild(day);
 
                 var footer = document.createElement('div');
+                footer.classList.add('review');
                 footer.innerHTML = `${formContext.comment.value}`;
                 feedback.appendChild(footer);
 
                 var place = `${formContext.place.value}`;
                 var comment= `${formContext.comment.value}`;
 
+                objMap[count++] = {coords:coords, name: name, date:date.toString(), message: `<div id=“review”></div>`};
 
+
+              var  serialObj = JSON.stringify(objMap) ;
+                        localStorage.setItem("coords", serialObj);
+                // var returnObj = JSON.parse(localStorage.getItem("coords"));
 
                 // eslint-disable-next-line no-undef
                 let objectMarker = new ymaps.GeoObject({
@@ -90,12 +98,18 @@ let text = document.getElementById('text');
                text.classList.add('balloon__text--delete');
 
                 objectMarker.events.add(['click'],  function () {
+
+                    const div = document.createElement('div');
+                    var jsonContent =  JSON.parse(localStorage.getItem("coords"));
+
+                    for (var i in jsonContent.coords) {
+                        div.innerHTML = jsonContent.coords[i].name + " " + jsonContent.coords[i].date + " " + jsonContent.coords[i].message;
+                        feedbacks.appendChild(div);
+                    }
                     modal.classList.add('balloon--active');
-                    // Ваш код
+
                 })
             });
-
-
         });
 
     }
@@ -103,10 +117,11 @@ let text = document.getElementById('text');
 
 
 
-
-
     closeModal.addEventListener('click', function(){
         modal.classList.remove('balloon--active');
-
+        clear();
     });
+        function clear() {
+            document.getElementById('balloon-list').innerHTML = '';
+        }
 }
